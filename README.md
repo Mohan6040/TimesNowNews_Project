@@ -20,6 +20,10 @@ This project is a dynamic web page that displays the latest stories and featured
 
 A live demo of this project can be found [here](#). *(Replace `#` with the actual URL if hosted online)*
 
+
+![Screenshot (1236)](https://github.com/user-attachments/assets/03128972-a726-4ee6-b407-ae8d1a514319)
+
+
 ## Features
 
 - **Dynamic Content Fetching**: Fetches the latest stories and featured voices from Time.com using the News API.
