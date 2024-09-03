@@ -20,7 +20,7 @@ This project is a dynamic web page that displays the latest stories and featured
 
 ## Demo
 
-A live demo of this project can be found [here](#). *(Replace `#` with the actual URL if hosted online)*
+A live demo of this project can be found [here](https://fantastic-panda-8ef28c.netlify.app). *(Replace `#` with the actual URL if hosted online)*
 
 ## Screnshots
 
