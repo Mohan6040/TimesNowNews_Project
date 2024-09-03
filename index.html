@@ -109,15 +109,6 @@
             position: relative;
         }
 
-        /* .container1::before {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: #333;
-            margin: 10px 0;
-        } */
-
         .latest-stories ul {
             list-style: none;
             padding: 0;
@@ -205,6 +196,33 @@
             margin: 10px 0 0;
             font-size: 14px;
         }
+
+        /* CSS for the 'Read More' button */
+.read-more-button {
+    background-color: #0073e6; /* Initial button background color */
+    color: white;              /* Initial text color */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+.read-more-button:hover {
+    background-color: #005bb5; /* Darker blue on hover */
+    color: #e0e0e0;            /* Lighter text on hover */
+    transform: scale(1.05);    /* Slightly enlarge on hover */
+}
+
+.read-more-button:active {
+    background-color: #004494; /* Even darker blue when clicked */
+    transform: scale(0.98);    /* Slightly shrink on click */
+}
+
+
     </style>
 </head>
 <body>
@@ -232,35 +250,12 @@
         <div class="main">
             <div class="stories-section">
                 <div class="featured-voices">
-                    <h1>Featured Voices</h1>
-                    <div class="featured-voices-grid">
-                        <!-- Example featured voices content -->
-                        <div class="featured-voice">
-                            <h3>Voice 1</h3>
-                            <p>Details about featured voice 1.</p>
-                        </div>
-                        <div class="featured-voice">
-                            <h3>Voice 2</h3>
-                            <p>Details about featured voice 2.</p>
-                        </div>
-                        <div class="featured-voice">
-                            <h3>Voice 3</h3>
-                            <p>Details about featured voice 3.</p>
-                        </div>
-                        <div class="featured-voice">
-                            <h3>Voice 4</h3>
-                            <p>Details about featured voice 4.</p>
-                        </div>
-                        <div class="featured-voice">
-                            <h3>Voice 5</h3>
-                            <p>Details about featured voice 5.</p>
-                        </div>
-                        <div class="featured-voice">
-                            <h3>Voice 6</h3>
-                            <p>Details about featured voice 6.</p>
-                        </div>
+                    <h2>FEATURED VOICES</h2>
+                    <div class="featured-voices-grid" id="featured-voices-grid">
+                        <!-- Featured voices will be populated here via JavaScript -->
                     </div>
                 </div>
+
 
                 <div class="latest-stories">
                     <h3>Latest Stories</h3>
@@ -296,17 +291,29 @@
             }
         }
 
-        function performSearch() {
-            const searchBar = document.getElementById('search-bar');
-            const query = searchBar.value.toLowerCase();
-            const storiesList = document.getElementById('latest-stories-list');
-            const listItems = storiesList.getElementsByTagName('li');
+        async function fetchFeaturedVoices() {
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        const featuredVoices = data.articles.slice(6, 12).map(article => ({
+            author: article.author || 'Featured Voice',
+            description: article.description || 'No description available',
+            url: article.url
+        }));
 
-            for (let item of listItems) {
-                const text = item.textContent.toLowerCase();
-                item.style.display = text.includes(query) ? '' : 'none';
-            }
-        }
+        const featuredVoicesGrid = document.getElementById('featured-voices-grid');
+        featuredVoicesGrid.innerHTML = featuredVoices.map(voice => `
+            <div class="featured-voice">
+                <h3>${voice.author}</h3>
+                <p>${voice.description}</p>
+                <button class="read-more-button" onclick="window.open('${voice.url}', '_blank')">Read More</button>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error fetching featured voices:', error);
+    }
+}
+
 
         function toggleSidebar() {
             const sidebar = document.querySelector('.sidebar-left');
@@ -318,8 +325,19 @@
             subscribeBox.style.display = 'none';
         }
 
-        // Initial fetch of latest stories on page load
-        fetchLatestStories();
+        function performSearch() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const latestStories = document.querySelectorAll('.latest-stories ul li a');
+            latestStories.forEach(story => {
+                const text = story.textContent.toLowerCase();
+                story.parentElement.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchLatestStories();
+            fetchFeaturedVoices();
+        });
     </script>
 </body>
 </html>
