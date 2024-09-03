@@ -1,343 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Latest Stories</title>
     <style>
-        body {
-            font-family:'Times New Roman', Times, serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        font-family: "Times New Roman", Times, serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
 
-        .container {
-            display: grid;
-            grid-template-areas: 
-                "header header header"
-                "sidebar-left main main"
-                "footer footer footer";
-            grid-template-rows: auto 1fr auto;
-            grid-template-columns: 200px 1fr;
-            height: 100vh;
-            max-width: 100%;
-        }
+      .container {
+        display: grid;
+        grid-template-areas:
+          "header header header"
+          "sidebar-left main main"
+          "footer footer footer";
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 200px 1fr;
+        height: 100vh;
+        max-width: 100%;
+      }
 
-        header {
-            grid-area: header;
-            background: white;
-            color: rgb(250, 8, 8);
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
+      header {
+        grid-area: header;
+        background: white;
+        color: rgb(250, 8, 8);
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
 
-        header h1 {
-            margin: 0;
-        }
+      header h1 {
+        margin: 0;
+      }
 
-        .search-bar-container {
-            display: flex;
-            align-items: center;
-        }
+      .search-bar-container {
+        display: flex;
+        align-items: center;
+      }
 
-        .search-bar {
-            border: 1px solid #ddd;
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 14px;
-            padding-right: 30px;
-            margin-right: 10px;
-        }
+      .search-bar {
+        border: 1px solid #ddd;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 14px;
+        padding-right: 30px;
+        margin-right: 10px;
+      }
 
-        .search-icon {
-            position: absolute;
-            right: 30px;
-            cursor: pointer;
-        }
+      .search-icon {
+        position: absolute;
+        right: 30px;
+        cursor: pointer;
+      }
 
-        .toggle-btn {
-            background-color: #e31837;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 18px;
-            line-height: 1;
-        }
+      .toggle-btn {
+        background-color: #e31837;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 18px;
+        line-height: 1;
+      }
 
-        .sidebar-left {
-            grid-area: sidebar-left;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
+      .sidebar-left {
+        grid-area: sidebar-left;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
 
-        .main {
-            grid-area: main;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      .main {
+        grid-area: main;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-        .stories-section {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+      .stories-section {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
 
-        .featured-voices, .latest-stories {
-            width: 48%;
-            font-size: 25px;
-        }
+      .featured-voices,
+      .latest-stories {
+        width: 48%;
+        font-size: 25px;
+      }
 
-        .featured-voices h1, .latest-stories h3 {
-            font-size: 25px;
-            color: #333;
-            margin-bottom: 10px;
-        }
+      .featured-voices h1,
+      .latest-stories h3 {
+        font-size: 25px;
+        color: #333;
+        margin-bottom: 10px;
+      }
 
-        .latest-stories {
-            background-color: yellow;
-            padding: 10px;
-            border-radius: 5px;
-            position: relative;
-        }
+      .latest-stories {
+        background-color: yellow;
+        padding: 10px;
+        border-radius: 5px;
+        position: relative;
+      }
 
-        .latest-stories ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      .latest-stories ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-        .latest-stories ul li {
-            margin-bottom: 10px;
-        }
+      .latest-stories ul li {
+        margin-bottom: 10px;
+      }
 
-        .latest-stories ul li a {
-            text-decoration: none;
-            color: #0073e6;
-            font-size: 14px;
-        }
+      .latest-stories ul li a {
+        text-decoration: none;
+        color: #0073e6;
+        font-size: 14px;
+      }
 
-        .latest-stories ul li a:hover {
-            text-decoration: underline;
-        }
+      .latest-stories ul li a:hover {
+        text-decoration: underline;
+      }
 
-        footer {
-            grid-area: footer;
-            background: #e31837;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+      footer {
+        grid-area: footer;
+        background: #e31837;
+        color: white;
+        text-align: center;
+        padding: 10px;
+      }
 
-        .subscribe-box {
-            background: #e31837;
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            position: relative;
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      .subscribe-box {
+        background: #e31837;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        position: relative;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .subscribe-box .close-btn {
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-        }
+      .subscribe-box .close-btn {
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+      }
 
-        .featured-voices {
-            width: 100%;
-        }
+      .featured-voices {
+        width: 100%;
+      }
 
-        .featured-voices h2 {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 10px;
-        }
+      .featured-voices h2 {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+      }
 
-        .featured-voices-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two columns */
-            gap: 20px; /* Space between items */
-        }
+      .featured-voices-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
 
-        .featured-voice {
-            background: #fff;
-            border-radius: 5px;
-            padding: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      .featured-voice {
+        background: #fff;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-        .featured-voice h3 {
-            margin: 0;
-            font-size: 16px;
-        }
+      .featured-voice h3 {
+        margin: 0;
+        font-size: 16px;
+      }
 
-        /* Different colors for headings */
-        .featured-voice:nth-child(1) h3 { color: #e31837; }
-        .featured-voice:nth-child(2) h3 { color: #0073e6; }
-        .featured-voice:nth-child(3) h3 { color: #2a9d8f; }
-        .featured-voice:nth-child(4) h3 { color: #f4a261; }
-        .featured-voice:nth-child(5) h3 { color: #264653; }
-        .featured-voice:nth-child(6) h3 { color: #e9c46a; }
+      /* Different colors for headings */
+      .featured-voice:nth-child(1) h3 {
+        color: #e31837;
+      }
+      .featured-voice:nth-child(2) h3 {
+        color: #0073e6;
+      }
+      .featured-voice:nth-child(3) h3 {
+        color: #2a9d8f;
+      }
+      .featured-voice:nth-child(4) h3 {
+        color: #f4a261;
+      }
+      .featured-voice:nth-child(5) h3 {
+        color: #264653;
+      }
+      .featured-voice:nth-child(6) h3 {
+        color: #e9c46a;
+      }
 
-        .featured-voice p {
-            margin: 10px 0 0;
-            font-size: 14px;
-        }
+      .featured-voice p {
+        margin: 10px 0 0;
+        font-size: 14px;
+      }
 
-        /* CSS for the 'Read More' button */
-.read-more-button {
-    background-color: #0073e6; /* Initial button background color */
-    color: white;              /* Initial text color */
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
-}
+      
+      .read-more-button {
+        background-color: #0073e6; 
+        color: white; 
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.3s ease, color 0.3s ease; 
+      }
 
-.read-more-button:hover {
-    background-color: #005bb5; /* Darker blue on hover */
-    color: #e0e0e0;            /* Lighter text on hover */
-    transform: scale(1.05);    /* Slightly enlarge on hover */
-}
+      .read-more-button:hover {
+        background-color: #005bb5; 
+        color: #e0e0e0; 
+        transform: scale(1.05); 
+      }
 
-.read-more-button:active {
-    background-color: #004494; /* Even darker blue when clicked */
-    transform: scale(0.98);    /* Slightly shrink on click */
-}
-
-
+      .read-more-button:active {
+        background-color: #004494; 
+        transform: scale(0.98);
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <header class="container1">
-            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-            <h1>TIME</h1>
-            <div class="search-bar-container">
-                <input type="text" class="search-bar" id="search-bar" placeholder="Search...">
-                <span class="search-icon" onclick="performSearch()">🔍</span>
-            </div>
-        </header>
-        <div class="sidebar-left">
-            <a href="#">
-                <h3>Menu</h3>
-            </a>
-            <p>Additional links or information can go here.</p>
-            <div class="subscribe-box" id="subscribe-box">
-                Subscribe and Save 10%
-                <span class="close-btn" onclick="closeSubscribeBox()">×</span>
-            </div>
+      <header class="container1">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <h1>TIME</h1>
+        <div class="search-bar-container">
+          <input
+            type="text"
+            class="search-bar"
+            id="search-bar"
+            placeholder="Search..."
+          />
+          <span class="search-icon" onclick="performSearch()">🔍</span>
         </div>
-
-        <div class="main">
-            <div class="stories-section">
-                <div class="featured-voices">
-                    <h2>FEATURED VOICES</h2>
-                    <div class="featured-voices-grid" id="featured-voices-grid">
-                        <!-- Featured voices will be populated here via JavaScript -->
-                    </div>
-                </div>
-
-
-                <div class="latest-stories">
-                    <h3>Latest Stories</h3>
-                    <ul id="latest-stories-list">
-                        <!-- Latest stories will be populated here via JavaScript -->
-                    </ul>
-                </div>
-            </div>
+      </header>
+      <div class="sidebar-left">
+        <a href="#">
+          <h3>Menu</h3>
+        </a>
+        <p>Additional links or information can go here.</p>
+        <div class="subscribe-box" id="subscribe-box">
+          Subscribe and Save 10%
+          <span class="close-btn" onclick="closeSubscribeBox()">×</span>
         </div>
+      </div>
 
-        <footer>
-            <p>&copy; 2024 TIME. All rights reserved.</p>
-        </footer>
+      <div class="main">
+        <div class="stories-section">
+          <div class="featured-voices">
+            <h2>FEATURED VOICES</h2>
+            <div class="featured-voices-grid" id="featured-voices-grid">
+            </div>
+          </div>
+
+          <div class="latest-stories">
+            <h3>Latest Stories</h3>
+            <ul id="latest-stories-list">
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2024 TIME. All rights reserved.</p>
+      </footer>
     </div>
 
     <script>
-        const apiKey = '7f418f8e660647d8a6956f4a11c0d7b7'; // Replace with your actual API key
-        const apiUrl = `https://newsapi.org/v2/top-headlines?sources=time&apiKey=${apiKey}`;
+      const apiKey = "7f418f8e660647d8a6956f4a11c0d7b7"; // Our actual API key
+      const apiUrl = `https://newsapi.org/v2/top-headlines?sources=time&apiKey=${apiKey}`;
 
-        async function fetchLatestStories() {
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                const stories = data.articles.slice(0, 6).map(article => ({
-                    title: article.title,
-                    url: article.url
-                }));
+      async function fetchLatestStories() {
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+          const stories = data.articles.slice(0, 6).map((article) => ({
+            title: article.title,
+            url: article.url,
+          }));
 
-                const storiesList = document.getElementById('latest-stories-list');
-                storiesList.innerHTML = stories.map(story => `<li><a href="${story.url}" target="_blank">${story.title}</a></li>`).join('');
-            } catch (error) {
-                console.error('Error fetching latest stories:', error);
-            }
+          const storiesList = document.getElementById("latest-stories-list");
+          storiesList.innerHTML = stories
+            .map(
+              (story) =>
+                `<li><a href="${story.url}" target="_blank">${story.title}</a></li>`
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching latest stories:", error);
         }
+      }
 
-        async function fetchFeaturedVoices() {
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        const featuredVoices = data.articles.slice(6, 12).map(article => ({
-            author: article.author || 'Featured Voice',
-            description: article.description || 'No description available',
-            url: article.url
-        }));
+      async function fetchFeaturedVoices() {
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+          const featuredVoices = data.articles.slice(6, 12).map((article) => ({
+            author: article.author || "Featured Voice",
+            description: article.description || "No description available",
+            url: article.url,
+          }));
 
-        const featuredVoicesGrid = document.getElementById('featured-voices-grid');
-        featuredVoicesGrid.innerHTML = featuredVoices.map(voice => `
+          const featuredVoicesGrid = document.getElementById(
+            "featured-voices-grid"
+          );
+          featuredVoicesGrid.innerHTML = featuredVoices
+            .map(
+              (voice) => `
             <div class="featured-voice">
                 <h3>${voice.author}</h3>
                 <p>${voice.description}</p>
                 <button class="read-more-button" onclick="window.open('${voice.url}', '_blank')">Read More</button>
             </div>
-        `).join('');
-    } catch (error) {
-        console.error('Error fetching featured voices:', error);
-    }
-}
-
-
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar-left');
-            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+        `
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error fetching featured voices:", error);
         }
+      }
 
-        function closeSubscribeBox() {
-            const subscribeBox = document.getElementById('subscribe-box');
-            subscribeBox.style.display = 'none';
-        }
+      function toggleSidebar() {
+        const sidebar = document.querySelector(".sidebar-left");
+        sidebar.style.display =
+          sidebar.style.display === "none" ? "block" : "none";
+      }
 
-        function performSearch() {
-            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
-            const latestStories = document.querySelectorAll('.latest-stories ul li a');
-            latestStories.forEach(story => {
-                const text = story.textContent.toLowerCase();
-                story.parentElement.style.display = text.includes(searchTerm) ? '' : 'none';
-            });
-        }
+      function closeSubscribeBox() {
+        const subscribeBox = document.getElementById("subscribe-box");
+        subscribeBox.style.display = "none";
+      }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchLatestStories();
-            fetchFeaturedVoices();
+      function performSearch() {
+        const searchTerm = document
+          .getElementById("search-bar")
+          .value.toLowerCase();
+        const latestStories = document.querySelectorAll(
+          ".latest-stories ul li a"
+        );
+        latestStories.forEach((story) => {
+          const text = story.textContent.toLowerCase();
+          story.parentElement.style.display = text.includes(searchTerm)
+            ? ""
+            : "none";
         });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchLatestStories();
+        fetchFeaturedVoices();
+      });
     </script>
-</body>
+  </body>
 </html>
