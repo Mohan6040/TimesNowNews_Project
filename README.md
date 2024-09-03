@@ -2,7 +2,8 @@ Creating a well-structured README file for your project on GitHub is essential, 
 
 ---
 
-# Latest Stories and Featured Voices Web Page
+# TimesNow-News
+## Latest Stories and Featured Voices Web Page
 
 This project is a dynamic web page that displays the latest stories and featured voices from Time.com using the News API. It includes interactive elements like a search bar, a sidebar, and a toggle button, all styled using CSS and enhanced with JavaScript.
 
