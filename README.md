@@ -1,6 +1,3 @@
-Creating a well-structured README file for your project on GitHub is essential, as it serves as the main documentation and provides an overview for users and contributors. Below is a sample README file tailored to your project that dynamically fetches and displays the latest stories and featured voices using the News API:
-
----
 
 # TimesNow-News
 ## Latest Stories and Featured Voices Web Page
