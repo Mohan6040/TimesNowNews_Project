@@ -18,7 +18,7 @@ This project is a dynamic web page that displays the latest stories and featured
 
 ## Demo
 
-A live demo of this project can be found [here](#). *(Replace `https://mohan6040.github.io/TimesNowNews_Project/` with the actual URL if hosted online)*
+A live demo of this project can be found [here](https://mohan6040.github.io/TimesNowNews_Project/). 
 
 
 ![TimesNowNews](https://github.com/user-attachments/assets/f7b78a6d-202e-4fd4-9a74-96d5881f8700)
